@@ -1,0 +1,23 @@
+- name: configure webserver
+  hosts: all
+  tasks:
+  - name: install package
+    yum:
+     name: httpd
+     state: present 
+  - name: copy website
+    copy:
+     src: ~/fujitsu_project/websites/index.html
+     dest: /var/www/html/index.html
+  - name: restart service
+    service:
+      name: httpd
+      state: restarted
+      enabled: true
+  - name: add service in firewall
+    firewalld:
+     service: http
+     state: enabled
+     permanent: yes
+     immediate: true
+    
