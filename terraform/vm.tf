@@ -72,10 +72,6 @@ resource "azurerm_linux_virtual_machine" "example" {
 
 resource "null_resource" "ansible" {
   provisioner "local-exec" {
-<<<<<<< HEAD
-    command = "echo ${azurerm_public_ip.example[*].ip_address} >> ../playbooks/inventory"
-=======
-    command = "echo ${azurerm_public_ip.example[*]ip_address} >> ~/fujitsu_project/playbooks/inventory"
->>>>>>> 4881ac28992fa71f8080f9f294434c634feb078a
+    command = "echo ${azurerm_public_ip.example[*].ip_address >> ../playbooks/inventory"
   }
 }
