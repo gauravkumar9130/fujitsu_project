@@ -70,7 +70,6 @@ resource "azurerm_linux_virtual_machine" "example" {
   }
 
   provisioner "local-exec" {
-    command = "echo ${azurerm_public_ip.example.*.id[count.index]} >> /home/ansible/inventory"
-
+    command = "echo ${azurerm_public_ip.example.*.ip_address[count.index]} >> /home/ansible/inventory"
   }
 }
