@@ -74,5 +74,6 @@ resource "azurerm_linux_virtual_machine" "example" {
       "pwd"
       "ls"
       "whoami"
+    EOT 
   }
 }
