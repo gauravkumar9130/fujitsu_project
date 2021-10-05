@@ -3,8 +3,8 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "prodrg"
-  location = "East US"
+  name     = "data"
+  location = "West US"
 }
 
 resource "azurerm_virtual_network" "example" {
