@@ -70,9 +70,6 @@ resource "azurerm_linux_virtual_machine" "example" {
   }
 
   provisioner "local-exec" {
-    command = <<EOT
-      "cd ~"
-      "ansible-playbook play.yml`"
-    EOT 
+    command = "ansible-playbook /home/ansible/play.yml" 
   }
 }
