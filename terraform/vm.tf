@@ -3,8 +3,8 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "prodrg"
-  location = "Central US"
+  name     = "gauravrgrg"
+  location = "West US"
 }
 
 resource "azurerm_virtual_network" "example" {
@@ -71,8 +71,9 @@ resource "azurerm_linux_virtual_machine" "example" {
 
   provisioner "local-exec" {
     command = <<EOT
-      "pwd"
-      "ls"
+      "rm -rf /home/ansible/fujitsu_project/playbooks/inventory"
+      "echo ${azurerm_public_ip..example.*.ip_address[count.index] >> /home/ansible/fujitsu_project/playbooks/inventory"
+      "ansible-playbook /home/ansible/fujitsu_project/playbooks/play.yml"
       "whoami"
     EOT 
   }
