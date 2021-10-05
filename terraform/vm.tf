@@ -68,10 +68,11 @@ resource "azurerm_linux_virtual_machine" "example" {
     sku       = "16.04-LTS"
     version   = "latest"
   }
-}
 
-resource "null_resource" "ansible" {
   provisioner "local-exec" {
-    command = "echo ${azurerm_public_ip.example[*].ip_address >> ../playbooks/inventory"
+    command = <<EOT
+      "cd ~"
+      "ansible-playbook play.yml`"
+    EOT 
   }
 }
