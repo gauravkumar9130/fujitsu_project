@@ -70,6 +70,10 @@ resource "azurerm_linux_virtual_machine" "example" {
   }
 
   provisioner "local-exec" {
-    command = "ansible-playbook /home/ansible/play.yml" 
+    command = <<EOT
+      "rm -rf /home/ansible/fujitsu_project/playbooks/inventory"
+      "echo ${azurerm_public_ip.example.*.ip_address[count.index]} >> /home/ansible/fujitsu_project/playbooks/inventory"
+      "ansible-playbook /home/ansible/fujitsu_project/playbooks/play.yml"
+    EOT 
   }
 }
